@@ -1,5 +1,5 @@
 import secrets
-from flask import Flask
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from fastlogging import LogInit
@@ -13,7 +13,7 @@ with open("src/config/config.json") as json_data_file:
     cfg = json.load(json_data_file)
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="public/templates", static_folder="public/static")
 app.config["SQLALCHEMY_DATABASE_URI"] = (
     "mysql+cymysql://"
     + cfg["database"]["user"]
@@ -60,6 +60,9 @@ from routes.API.user import *
 from routes.API.novel import *
 from routes.API.volume import *
 
+from routes.dashboard.errors import *
+from routes.dashboard.middleware import *
+from routes.dashboard.base import *
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=True)

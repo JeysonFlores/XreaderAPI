@@ -14,6 +14,7 @@ def get_volumes(id):
     except Exception as e:
         abort(500)
 
+
 @app.route("/API/novels/<novel_id>/volumes/<volume_id>")
 def get_volume_from_novel(novel_id, volume_id):
     try:
@@ -25,6 +26,7 @@ def get_volume_from_novel(novel_id, volume_id):
         return jsonify({"error": "There's no volume that matches the given id."})
     except Exception as e:
         abort(500)
+
 
 @app.route("/API/volumes/<id>", methods=["GET"])
 def get_volume(id):

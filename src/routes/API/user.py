@@ -8,8 +8,8 @@ import datetime
 import jwt
 
 
-@app.route("/login")
-def login():
+@app.route("/API/login")
+def api_login():
     try:
         username = request.json["name"]
         password = request.json["password"]
@@ -35,8 +35,8 @@ def login():
         abort(500)
 
 
-@app.route("/signup", methods=["POST"])
-def signup():
+@app.route("/API/signup", methods=["POST"])
+def api_signup():
     try:
         username = request.json["username"]
         name = request.json["name"]
@@ -56,9 +56,9 @@ def signup():
         abort(500)
 
 
-@app.route("/logout")
+@app.route("/API/logout")
 @token_required
-def logout():
+def api_logout():
     try:
         token = request.args.get("token")
 

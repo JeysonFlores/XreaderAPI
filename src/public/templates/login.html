@@ -1,0 +1,53 @@
+{% extends '_base.html' %}
+
+{% block head %}
+
+    <title> Xreader Panel - Iniciar Sesión </title>
+
+    <link href={{ url_for('static', filename='./css/signin.css') }} rel="stylesheet">
+
+{% endblock %}
+
+{% block navbar %} 
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    
+    <main class="text-center form-signin">
+        <form method="post" >
+        <img class="mb-4" src={{ url_for('static', filename='./assets/Xreader.svg') }} alt="" width="250" height="100">
+        <h1 class="h3 mb-3 fw-normal">Xreader - Admin Login</h1>
+    
+        <div class="form-floating">
+            <input type="text" name="usernameField" class="form-control" id="floatingInput" placeholder="userExample123">
+            <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" name="passwordField" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+    
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Log In</button>
+        <p class="mt-5 mb-3 text-muted">
+            Jeyson Antonio Flores Deras<br>
+            Carlos Fernando Murrieta Villalbazo
+        </p>
+        </form>
+    </main>
+
+{% endblock %}
