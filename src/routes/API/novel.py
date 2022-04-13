@@ -23,6 +23,6 @@ def get_novel(id):
         if novel:
             return novel_schema.jsonify(novel)
 
-        return jsonify({"error": "There's not novel that matched the given id."})
+        return jsonify({"error": "There's not novel that matches the given id."})
     except Exception as e:
         abort(500)
