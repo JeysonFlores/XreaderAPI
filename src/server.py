@@ -42,6 +42,12 @@ from schemas.user import *
 from schemas.volume import *
 
 
+novel_schema = NovelSchema()
+novels_schema = NovelSchema(many=True)
+volume_schema = VolumeSchema()
+volumes_schema = VolumeSchema(many=True)
+
+
 try:
     db.create_all()
 except Exception as e:
@@ -51,6 +57,8 @@ except Exception as e:
 from routes.API.errors import *
 from routes.API.middleware import *
 from routes.API.user import *
+from routes.API.novel import *
+from routes.API.volume import *
 
 
 if __name__ == "__main__":

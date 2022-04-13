@@ -25,7 +25,7 @@ def login():
             return jsonify({"error": "User already logged"})
 
         token = jwt.encode(
-            {"user_id": user.id, "username": user.password}, app.config["SECRET_KEY"]
+            {"id": user.id, "username": user.password}, app.config["SECRET_KEY"]
         )
         user.loging_in(token)
         db.session.commit()
@@ -60,13 +60,15 @@ def signup():
 @token_required
 def logout():
     try:
-        logger.info("Cargando token")
         token = request.args.get("token")
 
         data = jwt.decode(token, app.config["SECRET_KEY"], algorithms="HS256")
-        logger.info("DATA DATATYPE")
-        print(type(data))
-        user = User.query.filter_by(id=data["user_id"]).first()
+
+        user = User.query.filter_by(id=data["id"]).first()
+
+        if not user:
+            return jsonify({"error": "User is not logged"})
+
         user.loging_out()
         db.session.commit()
 
