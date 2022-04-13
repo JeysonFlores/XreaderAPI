@@ -1,0 +1,4 @@
+venv
+src/models/__pycache__
+src/routes/API/__pycache__
+src/schemas/__pycache__
