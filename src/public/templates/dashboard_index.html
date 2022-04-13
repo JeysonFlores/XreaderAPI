@@ -1,1 +1,67 @@
-Hola :D
+{% extends '_base.html' %}
+
+{% block head %}
+
+    <title> Xreader Panel - Home </title>
+
+    <link href={{ url_for('static', filename='./css/navbar-top.css') }} rel="stylesheet">
+
+{% endblock %}
+
+{% block navbar %} 
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-success mb-4">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Xreader</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Novels</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                  <li><a class="dropdown-item" href="/admin/novels/search">Search</a></li>
+                  <li><a class="dropdown-item" href="/admin/novels/add">Add</a></li>
+                  <li><a class="dropdown-item" href="/admin/novels/edit">Edit</a></li>
+                  <li><a class="dropdown-item" href="/admin/novels/delete">Delete</a></li>
+                </ul>
+            </li>
+            </ul>
+            <a class="btn btn-success bg-white text-success" href="/logout">Logout</a>
+        </div>
+        </div>
+    </nav>
+
+    <style>
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+        }
+  
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }
+      </style>
+
+{% endblock %}
+
+{% block content %}
+    
+    <main class="container">
+        <div class="bg-light p-5 rounded">
+        <h1>Xreader Panel</h1>
+        <p class="lead">Little Panel to administrate Xreader's information.</p>
+        <a class="btn btn-lg btn-success" href="/admin/credits" role="button">See credits</a>
+        </div>
+    </main>
+
+{% endblock %}
