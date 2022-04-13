@@ -15,7 +15,7 @@ def get_volumes(id):
         abort(500)
 
 
-@app.route("/API/novels/<novel_id>/volumes/<volume_id>")
+@app.route("/API/novels/<novel_id>/volumes/<volume_id>", methods=["GET"])
 def get_volume_from_novel(novel_id, volume_id):
     try:
         volume = Volume.query.filter_by(id=volume_id, id_novel=novel_id).first()
