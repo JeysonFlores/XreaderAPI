@@ -41,7 +41,7 @@ def dashboard_logout():
     return redirect("/login")
 
 
-@app.route("/credits")
+@app.route("/admin/credits")
 @session_required
 def dashboard_credits():
     return render_template("dashboard_credits.html")

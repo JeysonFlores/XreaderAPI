@@ -25,7 +25,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Novels</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown01">
                   <li><a class="dropdown-item" href="/admin/novels">Search</a></li>
-                  <li><a class="dropdown-item" href="/admin/novels/add">Add</a></li>
+                  <li><a class="active dropdown-item" href="/admin/novels/add">Add</a></li>
                 </ul>
             </li>
             </ul>
@@ -54,37 +54,26 @@
 
 {% block content %}
 <div class="mx-5 px-5 table-responsive">
-    <h1>List of Volumes of {{ main_novel.name }}</h1>
-    <a class="btn btn-success" href="/admin/novels/{{ main_novel.id }}/volumes/add">Add Volume</a>
-    <table class="table table-sm table-borderless align-middle table-hover caption-top">
-        <caption>Volumes: {{ len(volumes) }}</caption>
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col">Name</th>
-            <th scope="col">Link</th>
-            <th scope="col">Image Path</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for volume in volumes %}
-
-          <tr>
-            <td>
-                <a class="btn btn-success" href="/admin/novels/{{ main_novel.id }}/volumes/{{ volume.id }}/edit">Edit</a>
-                <a class="btn btn-danger" href="/admin/novels/{{ main_novel.id }}/volumes/{{ volume.id }}/delete">Delete</a>
-            </td>
-
-            <td>{{ volume.id }}</td>
-            <td>{{ volume.name }}</td>
-            <td>{{ volume.link }}</td>
-            <td>{{ volume.image_path }}</td>
-          </tr>
-
-        {% endfor %}
-        </tbody>
-    </table>
+    <form method="post" >
+        <h1 class="h3 mb-3 fw-normal">Add Volume in {{ novel.name }}</h1>
+    
+        <div class="form-floating">
+            <input type="text" name="nameField" class="form-control" id="nameField" placeholder="" required>
+            <label for="floatingInput">Name</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input type="text" name="linkField" class="form-control" id="linkField" placeholder="" required>
+            <label for="linkField">PDF Link</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input type="text" name="imagepathField" class="form-control" id="imagepathField" placeholder="" required>
+            <label for="floatingPassword">Image Path</label>
+        </div>
+        <br>
+        <button class="w-100 btn btn-lg btn-success" type="submit">Add</button>
+    </form>
 </div>
 
 

@@ -40,6 +40,23 @@ def dashboard_novel_edit(id):
     if not novel:
         return redirect("/error?message=There's no novel that matches the given id.")
 
+    if request.method == "POST":
+        name = request.form.get("nameField")
+        author = request.form.get("authorField")
+        image_path = request.form.get("imagepathField")
+        publishing_year = request.form.get("publishingField")
+        description = request.form.get("descriptionField")
+
+        novel.name = name
+        novel.author = author
+        novel.image_path = image_path
+        novel.publishing_year = int(publishing_year)
+        novel.description = description
+
+        db.session.commit()
+
+        return redirect("/admin/novels")
+
     return render_template("dashboard_novels_edit.html", novel=novel)
 
 
