@@ -5,6 +5,7 @@ from flask_restful import abort
 
 
 @app.route("/API/novels", methods=["GET"])
+@token_required
 def get_novels():
     try:
         all_novels = Novel.query.all()
@@ -12,10 +13,12 @@ def get_novels():
 
         return jsonify({"novels": result})
     except Exception as e:
+        logger.error("There was an error in querying the novels")
         abort(500)
 
 
 @app.route("/API/novels/<id>", methods=["GET"])
+@token_required
 def get_novel(id):
     try:
         novel = Novel.query.get(id)
@@ -25,4 +28,5 @@ def get_novel(id):
 
         return jsonify({"error": "There's not novel that matches the given id."})
     except Exception as e:
+        logger.error("There was an error in querying a novel")
         abort(500)

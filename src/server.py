@@ -68,4 +68,4 @@ from routes.dashboard.volume import *
 
 
 if __name__ == "__main__":
-    app.run(debug=True, threaded=True)
+    app.run(debug=cfg["API"]["debug"], threaded=cfg["API"]["threaded"])

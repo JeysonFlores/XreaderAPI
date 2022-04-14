@@ -32,6 +32,7 @@ def api_login():
 
         return jsonify({"token": token})
     except:
+        logger.error("There was an error logging in")
         abort(500)
 
 
@@ -53,6 +54,7 @@ def api_signup():
 
         return jsonify({"message": "User registered"})
     except:
+        logger.error("There was an error signing up")
         abort(500)
 
 
@@ -74,4 +76,5 @@ def api_logout():
 
         return jsonify({"message": "Logged out successfully"})
     except:
+        logger.error("There was an error logging out")
         abort(500)
