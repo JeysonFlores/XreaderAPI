@@ -2,7 +2,7 @@
 
 {% block head %}
 
-    <title> Xreader Panel - Home </title>
+    <title> Xreader Panel - Novels </title>
 
     <link href={{ url_for('static', filename='./css/navbar-top.css') }} rel="stylesheet">
 
@@ -19,9 +19,9 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/admin">Home</a>
+                <a class="nav-link" aria-current="page" href="/admin">Home</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Novels</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown01">
                   <li><a class="dropdown-item" href="/admin/novels">Search</a></li>
@@ -53,13 +53,37 @@
 {% endblock %}
 
 {% block content %}
+<div class="mx-5 px-5 table-responsive">
+    <form method="post" >
+        <h1 class="h3 mb-3 fw-normal">Edit Novel <b>{{ novel.name }}(#{{ novel.id }})</b></h1>
     
-    <main class="container">
-        <div class="bg-light p-5 rounded">
-        <h1>Xreader Panel</h1>
-        <p class="lead">Little Panel to administrate Xreader's information.</p>
-        <a class="btn btn-lg btn-success" href="/admin/credits" role="button">See credits</a>
+        <div class="form-floating">
+            <input value="{{ novel.name }}" type="text" name="nameField" class="form-control" id="nameField" placeholder="" required>
+            <label for="floatingInput">Name</label>
         </div>
-    </main>
+        <br>
+        <div class="form-floating">
+            <input value="{{ novel.author }}" type="text" name="authorField" class="form-control" id="authorField" placeholder="" required>
+            <label for="floatingPassword">Author</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input value="{{ novel.image_path }}" type="text" name="imagepathField" class="form-control" id="imagepathField" placeholder="" required>
+            <label for="floatingPassword">Image Path</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input value="{{ novel.publishing_year }}" type="number" name="publishingField" class="form-control" id="publishingField" placeholder="" required>
+            <label for="publishingField">Publishing Year</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <textarea name="descriptionField" id="descriptionField" onclick="" class="form-control" rows="3" cols="1000"   >{{ novel.description }}</textarea>
+        </div>
+        <br>
+        <button class="w-100 btn btn-lg btn-success" type="submit">Edit</button>
+    </form>
+</div>
+
 
 {% endblock %}

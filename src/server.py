@@ -63,6 +63,9 @@ from routes.API.volume import *
 from routes.dashboard.errors import *
 from routes.dashboard.middleware import *
 from routes.dashboard.base import *
+from routes.dashboard.novel import *
+from routes.dashboard.volume import *
+
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=True)

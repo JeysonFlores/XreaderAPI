@@ -2,7 +2,7 @@
 
 {% block head %}
 
-    <title> Xreader Panel - Home </title>
+    <title> Xreader Panel - Volumes </title>
 
     <link href={{ url_for('static', filename='./css/navbar-top.css') }} rel="stylesheet">
 
@@ -19,9 +19,9 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/admin">Home</a>
+                <a class="nav-link" aria-current="page" href="/admin">Home</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Novels</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown01">
                   <li><a class="dropdown-item" href="/admin/novels">Search</a></li>
@@ -53,13 +53,39 @@
 {% endblock %}
 
 {% block content %}
-    
-    <main class="container">
-        <div class="bg-light p-5 rounded">
-        <h1>Xreader Panel</h1>
-        <p class="lead">Little Panel to administrate Xreader's information.</p>
-        <a class="btn btn-lg btn-success" href="/admin/credits" role="button">See credits</a>
-        </div>
-    </main>
+<div class="mx-5 px-5 table-responsive">
+    <h1>List of Volumes of {{ main_novel.name }}</h1>
+    <a class="btn btn-success" href="/admin/novels/{{ main_novel.id }}/volumes/add">Add Volume</a>
+    <table class="table table-sm table-borderless align-middle table-hover caption-top">
+        <caption>Volumes: {{ len(volumes) }}</caption>
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Link</th>
+            <th scope="col">Image Path</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for volume in volumes %}
+
+          <tr>
+            <td>
+                <a class="btn btn-success" href="/admin/volumes/{{ volume.id }}/edit">Edit</a>
+                <a class="btn btn-danger" href="/admin/volumes/{{ volume.id }}/delete">Delete</a>
+            </td>
+
+            <td>{{ volume.id }}</td>
+            <td>{{ volume.name }}</td>
+            <td>{{ volume.link }}</td>
+            <td>{{ volume.image_path }}</td>
+          </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 
 {% endblock %}

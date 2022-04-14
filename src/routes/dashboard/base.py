@@ -39,3 +39,9 @@ def dashboard_login():
 def dashboard_logout():
     session.pop("username", None)
     return redirect("/login")
+
+
+@app.route("/credits")
+@session_required
+def dashboard_credits():
+    return render_template("dashboard_credits.html")
