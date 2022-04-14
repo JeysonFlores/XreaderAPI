@@ -1,10 +1,8 @@
 from __main__ import app, token_required, logger
 from __main__ import db, User
-import json
 from flask import request, jsonify
 from flask_restful import abort
 from hashlib import md5
-import datetime
 import jwt
 
 

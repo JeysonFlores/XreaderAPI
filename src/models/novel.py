@@ -1,5 +1,4 @@
 from __main__ import db
-from email.mime import image
 
 
 class Novel(db.Model):

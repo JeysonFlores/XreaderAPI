@@ -1,7 +1,5 @@
 from __main__ import app, session_required, request
 from __main__ import db, Novel, Volume
-from email.mime import image
-
 from flask import render_template, redirect
 
 
@@ -11,8 +9,10 @@ def dashboard_novel_volumes(novel_id):
     novel = Novel.query.get(novel_id)
 
     all_volumes = Volume.query.filter_by(id_novel=novel_id).all()
-    
-    return render_template("dashboard_volumes.html", volumes=all_volumes, main_novel=novel, len=len)
+
+    return render_template(
+        "dashboard_volumes.html", volumes=all_volumes, main_novel=novel, len=len
+    )
 
 
 @app.route("/admin/novels/<novel_id>/volumes/add", methods=["GET", "POST"])
@@ -78,6 +78,7 @@ def dashboard_novels_volumes_delete(novel_id, volume_id):
     db.session.commit()
 
     return redirect("/admin/novels/" + str(novel_id) + "/volumes")
+
 
 @app.route("/admin/volumes/<id>/delete")
 @session_required
