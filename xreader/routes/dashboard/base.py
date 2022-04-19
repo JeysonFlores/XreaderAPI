@@ -1,5 +1,5 @@
-from __main__ import app, request, render_template
-from __main__ import User, session_required, no_session_required
+from xreader.server import app, request, render_template
+from xreader.server import User, session_required, no_session_required
 from flask import redirect, session
 from hashlib import md5
 
@@ -21,6 +21,11 @@ def dashboard_login():
             username=str(username),
             password=str(md5(password.encode("utf-8")).hexdigest()),
         ).first()
+
+        if user.permissions == 0:
+            return redirect(
+            "/error?message=You're not an administrator."
+        )
 
         if user is not None:
             session["username"] = username

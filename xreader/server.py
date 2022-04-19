@@ -9,13 +9,13 @@ import json
 
 logger = LogInit(pathName="./tmp/logs.log", console=True, colors=True)
 
-with open("src/config/config.json") as json_data_file:
+with open("xreader/config/config.json") as json_data_file:
     cfg = json.load(json_data_file)
 
 
 app = Flask(__name__, template_folder="public/templates", static_folder="public/static")
 app.config["SQLALCHEMY_DATABASE_URI"] = (
-    "mysql+cymysql://"
+    "postgresql+psycopg2://"
     + cfg["database"]["user"]
     + ":"
     + cfg["database"]["password"]
@@ -33,13 +33,13 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
 
-from models.novel import *
-from models.user import *
-from models.volume import *
+from xreader.models.novel import *
+from xreader.models.user import *
+from xreader.models.volume import *
 
-from schemas.novel import *
-from schemas.user import *
-from schemas.volume import *
+from xreader.schemas.novel import *
+from xreader.schemas.user import *
+from xreader.schemas.volume import *
 
 
 novel_schema = NovelSchema()
@@ -54,18 +54,17 @@ except Exception as e:
     logger.error(str(e))
 
 
-from routes.API.errors import *
-from routes.API.middleware import *
-from routes.API.user import *
-from routes.API.novel import *
-from routes.API.volume import *
+from xreader.routes.API.errors import *
+from xreader.routes.API.middleware import *
+from xreader.routes.API.user import *
+from xreader.routes.API.novel import *
+from xreader.routes.API.volume import *
 
-from routes.dashboard.errors import *
-from routes.dashboard.middleware import *
-from routes.dashboard.base import *
-from routes.dashboard.novel import *
-from routes.dashboard.volume import *
-
+from xreader.routes.dashboard.errors import *
+from xreader.routes.dashboard.middleware import *
+from xreader.routes.dashboard.base import *
+from xreader.routes.dashboard.novel import *
+from xreader.routes.dashboard.volume import *
 
 if __name__ == "__main__":
     app.run(debug=cfg["API"]["debug"], threaded=cfg["API"]["threaded"])

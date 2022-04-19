@@ -1,4 +1,4 @@
-from __main__ import ma
+from xreader.server import ma
 
 
 class NovelSchema(ma.Schema):

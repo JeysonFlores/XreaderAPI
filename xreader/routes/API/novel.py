@@ -1,5 +1,5 @@
-from __main__ import app, token_required, logger
-from __main__ import db, User, Novel, novel_schema, novels_schema
+from xreader.server import app, token_required, logger
+from xreader.server import db, User, Novel, novel_schema, novels_schema
 from flask import request, jsonify
 from flask_restful import abort
 

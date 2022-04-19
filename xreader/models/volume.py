@@ -1,4 +1,4 @@
-from __main__ import db
+from xreader.server import db
 
 
 class Volume(db.Model):

@@ -1,5 +1,5 @@
-from __main__ import app, session_required, request
-from __main__ import db, Novel
+from xreader.server import app, session_required, request
+from xreader.server import db, Novel
 
 from flask import redirect, render_template
 

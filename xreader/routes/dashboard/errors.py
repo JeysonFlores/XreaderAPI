@@ -1,4 +1,4 @@
-from __main__ import app, request, render_template
+from xreader.server import app, request, render_template
 
 
 @app.route("/error")

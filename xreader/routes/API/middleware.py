@@ -1,4 +1,4 @@
-from __main__ import app
+from xreader.server import app
 from flask import request
 from flask_restful import abort
 from functools import wraps

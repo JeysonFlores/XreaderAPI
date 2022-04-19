@@ -1,5 +1,7 @@
 venv
-src/models/__pycache__
-src/routes/API/__pycache__
-src/routes/dashboard/__pycache__
-src/schemas/__pycache__
+xreader/models/__pycache__
+xreader/routes/API/__pycache__
+xreader/routes/dashboard/__pycache__
+xreader/schemas/__pycache__
+xreader/__pycache__
+__pycache__
