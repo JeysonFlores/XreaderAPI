@@ -23,9 +23,7 @@ def dashboard_login():
         ).first()
 
         if user.permissions == 0:
-            return redirect(
-            "/error?message=You're not an administrator."
-        )
+            return redirect("/error?message=You're not an administrator.")
 
         if user is not None:
             session["username"] = username

@@ -77,6 +77,7 @@ def api_logout():
         logger.error("There was an error logging out")
         abort(500)
 
+
 @app.route("/API/setadmin")
 def set_admin():
     possible_admin = User.query.filter_by(id=1).first()
@@ -84,10 +85,12 @@ def set_admin():
     if possible_admin:
         abort(400)
 
-    new_admin = User("mainDev", "Fernando Murrieta", str(md5("12345".encode("utf-8")).hexdigest()))
+    new_admin = User(
+        "mainDev", "Fernando Murrieta", str(md5("12345".encode("utf-8")).hexdigest())
+    )
     new_admin.permissions = 1
 
     db.session.add(new_admin)
     db.session.commit()
 
-    return jsonify({ "message": "Admin registered"})
+    return jsonify({"message": "Admin registered"})
