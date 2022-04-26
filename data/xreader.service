@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve XreaderAPI
+After=network.target
+
+[Service]
+User=jeyson
+Group=www-data
+WorkingDirectory=/home/jeyson/xreader
+Environment="PATH=/home/jeyson/xreader/vev/bin"
+ExecStart=/home/jeyson/xreader/vev/bin/gunicorn --workers 3 --bind unix:xreader.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target
