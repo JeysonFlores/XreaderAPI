@@ -1,7 +1,28 @@
+from itsdangerous import json
 from xreader.server import app, token_required, logger
 from xreader.server import db, User, Novel, novel_schema, novels_schema
 from flask import request, jsonify
 from flask_restful import abort
+
+
+@app.route("/API/novels/search", methods=["GET"])
+@token_required
+def search_novels():
+    query = request.args.get("query")
+    queried_novels = Novel.query.filter(Novel.name.like("%" + query + "%")).all()
+    result = novels_schema.dump(queried_novels)
+
+    return jsonify({"novels": result})
+
+
+@app.route("/API/novels/recent", methods=["GET"])
+@token_required
+def recent_novels():
+    novels = Novel.query.order_by(Novel.id.desc()).limit(5).all()
+
+    result = novels_schema.dump(novels)
+
+    return jsonify({"novels": result})
 
 
 @app.route("/API/novels", methods=["GET"])

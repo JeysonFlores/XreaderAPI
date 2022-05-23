@@ -9,8 +9,8 @@ import jwt
 @app.route("/API/login")
 def api_login():
     try:
-        username = request.json["name"]
-        password = request.json["password"]
+        username = request.args.get("name")
+        password = request.args.get("password")
 
         user = User.query.filter_by(
             username=username, password=str(md5(password.encode("utf-8")).hexdigest())
